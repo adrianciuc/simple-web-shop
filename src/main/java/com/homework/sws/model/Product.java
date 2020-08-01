@@ -5,6 +5,7 @@ public class Product {
     private Long id;
     private String title;
     private Double cost;
+    private Long categoryid;
 
     public Double getCost() {
         return cost;
@@ -28,5 +29,13 @@ public class Product {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public Long getCategoryid() {
+        return categoryid;
+    }
+
+    public void setCategoryid(Long categoryid) {
+        this.categoryid = categoryid;
     }
 }

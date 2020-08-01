@@ -2,26 +2,37 @@ package com.homework.sws.repository.impl;
 
 import com.homework.sws.model.Category;
 import com.homework.sws.repository.CategoryRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import java.util.ArrayList;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
+import java.util.stream.Stream;
 
 public class CategoryRepositoryImpl implements CategoryRepository {
 
+    private static final Logger LOG = LoggerFactory.getLogger(CategoryRepositoryImpl.class);
+    private static final String CATEGORY_TABLE = "categories.table";
+
+    private final CSVLineReader csvLineReader;
+    private final CSVLineMapper csvLineMapper;
+
+    public CategoryRepositoryImpl(CSVLineReader csvLineReader, CSVLineMapper csvLineMapper) {
+        this.csvLineReader = csvLineReader;
+        this.csvLineMapper = csvLineMapper;
+    }
+
     public List<Category> getAll() {
-        List<Category> categoryList = new ArrayList<Category>();
-        Category cat1 = new Category();
-        Category cat2 = new Category();
-        Category cat3 = new Category();
-        cat1.setTitle("Cat 1");
-        cat1.setId(1L);
-        cat2.setTitle("Cat 2");
-        cat2.setId(2L);
-        cat3.setTitle("Cat 3");
-        cat3.setId(3L);
-        categoryList.add(cat1);
-        categoryList.add(cat2);
-        categoryList.add(cat3);
-        return categoryList;
+        try {
+            Path tablePath = Paths.get(System.getProperty("db.path"), CATEGORY_TABLE);
+            LOG.debug("Reading category table from file: {}", tablePath);
+            Stream<List<String>> csvDataLines = this.csvLineReader.getCSVDataLinesFrom(tablePath);
+            List<String> csvHeaderLine = this.csvLineReader.getCSVHeaderLine(tablePath);
+            return this.csvLineMapper.mapFrom(csvDataLines, csvHeaderLine, Category.class);
+        } catch (Exception e) {
+            LOG.error("There was a problem at fetching the categories from DB.", e);
+            throw new DataAccessException(e);
+        }
     }
 }
