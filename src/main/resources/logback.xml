@@ -8,7 +8,7 @@
               class="ch.qos.logback.core.ConsoleAppender">
         <layout class="ch.qos.logback.classic.PatternLayout">
             <pattern>
-                %d{HH:mm:ss.SSS} [%thread] %-5level %logger{32} - %msg%n
+                %d{HH:mm:ss.SSS} [%thread] %X{sessionId} %-5level %logger{32} - %msg%n
             </pattern>
         </layout>
     </appender>
