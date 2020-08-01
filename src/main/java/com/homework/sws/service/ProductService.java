@@ -7,4 +7,5 @@ import java.util.List;
 public interface ProductService {
 
     List<ProductBean> getForCategory(Long categoryId);
+    boolean productWithIdExists(Long productId);
 }

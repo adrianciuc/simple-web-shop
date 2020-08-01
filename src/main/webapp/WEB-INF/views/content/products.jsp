@@ -6,6 +6,6 @@
         <span class="product_title">${product.title}</span>
         <label>Pret:</label>
         <span class="product_cost">${product.cost}</span>
-        <button>Add to Cart</button>
+        <button class="add_to_cart">Add to Cart</button>
     </div>
 </c:forEach>

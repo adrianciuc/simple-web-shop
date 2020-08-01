@@ -16,6 +16,10 @@
         <servlet-name>products</servlet-name>
         <servlet-class>com.homework.sws.controller.ProductServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>shopingCart</servlet-name>
+        <servlet-class>com.homework.sws.controller.ShoppingCartServlet</servlet-class>
+    </servlet>
 
 
     <servlet-mapping>
@@ -33,6 +37,10 @@
     <servlet-mapping>
         <servlet-name>products</servlet-name>
         <url-pattern>/category/products</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>shopingCart</servlet-name>
+        <url-pattern>/cart</url-pattern>
     </servlet-mapping>
 
     <filter>

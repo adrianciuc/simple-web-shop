@@ -13,5 +13,6 @@
 <body>
 <jsp:include page="/categories/"/>
 <div class="products_container"></div>
+<jsp:include page="/cart"/>
 </body>
 </html>

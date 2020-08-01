@@ -26,6 +26,11 @@ public class ProductServiceImpl implements ProductService {
                 .collect(Collectors.toList());
     }
 
+    @Override
+    public boolean productWithIdExists(Long productId) {
+        return productRepository.existsProductWithId(productId);
+    }
+
     public ProductRepository getProductRepository() {
         return productRepository;
     }

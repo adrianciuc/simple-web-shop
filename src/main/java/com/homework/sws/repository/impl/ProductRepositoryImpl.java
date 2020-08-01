@@ -39,6 +39,25 @@ public class ProductRepositoryImpl implements ProductRepository {
         }
     }
 
+    @Override
+    public boolean existsProductWithId(Long productId) {
+        try {
+            Path tablePath = Paths.get(System.getProperty("db.path"), PRODUCTS_TABLE);
+            LOG.debug("Checking if product with id {} exists in table from file {}", productId, tablePath);
+            Stream<List<String>> csvDataLines = this.csvLineReader.getCSVDataLinesFrom(tablePath);
+            return csvDataLines
+                    .filter(productAsListOfString -> !productAsListOfString.isEmpty())
+                    .anyMatch(productAsListOfString -> isProductWithId(productId, productAsListOfString));
+        } catch (Exception e) {
+            LOG.error("There was a problem at checking if product with id {} exists", productId, e);
+            throw new DataAccessException(e);
+        }
+    }
+
+    private boolean isProductWithId(Long productId, List<String> productAsListOfString) {
+        return productAsListOfString.get(0).equals(productId.toString());
+    }
+
     private boolean isProductOfCategory(Long categoryId, List<String> productAsListOfStrings) {
         return productAsListOfStrings.get(productAsListOfStrings.size() - 1).endsWith(categoryId.toString());
     }
