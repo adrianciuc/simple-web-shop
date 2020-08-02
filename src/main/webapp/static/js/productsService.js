@@ -6,8 +6,11 @@ const PRODUCT_ID_PREFIX = "product-"
 
 let displayProductsFromCategory = function (ev) {
     let url = CONTEXT_PATH + GET_PRODUCTS_OF_CATEGORY_URL
-    let categoryId = ev.target.id.replace(CATEGORY_ID_PREFIX, "")
+    let rawCategoryId = $(ev.target).parent(".category").attr("id")
+    let categoryId = rawCategoryId.replace(CATEGORY_ID_PREFIX, "")
     $.get(url, {"categoryId": categoryId}, handleProductsResponse)
+    $(".category-clicked").removeClass("category-clicked")
+    $(ev.target).addClass("category-clicked");
 }
 
 let handleProductsResponse = function (data, status) {

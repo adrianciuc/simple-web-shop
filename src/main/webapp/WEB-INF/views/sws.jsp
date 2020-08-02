@@ -11,8 +11,8 @@
     <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/sws.js"></script>
 </head>
 <body>
-<jsp:include page="/categories/"/>
-<div class="products_container"></div>
-<jsp:include page="/cart"/>
+    <jsp:include page="/categories/"/>
+    <div class="products_container"></div>
+    <jsp:include page="content/footer.jsp"/>
 </body>
 </html>

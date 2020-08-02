@@ -1,5 +1,6 @@
 let prepareCategory = function (index, category) {
-    $(category).click(displayProductsFromCategory)
+    let categorySelector = $(category);
+    categorySelector.on('click', '*',displayProductsFromCategory)
 }
 
 let readyFunction = function () {

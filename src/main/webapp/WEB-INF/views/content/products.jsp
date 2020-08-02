@@ -2,10 +2,13 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:forEach items="${products}" var="product">
     <div class="product_container" id="product-${product.id}">
-        <label>Denumire:</label>
-        <span class="product_title">${product.title}</span>
-        <label>Pret:</label>
-        <span class="product_cost">${product.cost}</span>
-        <button class="add_to_cart">Add to Cart</button>
+        <div class="product_image">
+            <img src="${pageContext.request.contextPath}/static/img/img-placeholder.jpg">
+        </div>
+        <div class="product_details_container">
+            <label>Denumire: <span class="product_title">${product.title}</span></label>
+            <label>Pret: <span class="product_cost">${product.cost}</span> lei</label>
+        </div>
+        <button class="add_to_cart">Adauga in cos</button>
     </div>
 </c:forEach>

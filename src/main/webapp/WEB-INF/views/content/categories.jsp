@@ -3,9 +3,12 @@
 <div class="menu-container">
     <div class="categories-container">
         <c:forEach items="${categories}" var="category">
-            <div id="category-${category.id}" class="category">
-                ${category.title}
+            <div id="category-${category.id}" class="category menu-item-container">
+                <div class="category-title">
+                    ${category.title}
+                </div>
             </div>
         </c:forEach>
+        <jsp:include page="/cart"/>
     </div>
 </div>
