@@ -28,7 +28,7 @@ public class ShoppingCartServlet extends HttpServlet {
     public void init() {
         this.productService = new ProductServiceFactory().getDefaultProductService();
         try {
-            this.addToCartFileWriter = new FileWriter(System.getProperty(ADD_TO_CART_LOG_FILE_PATH));
+            this.addToCartFileWriter = new FileWriter(System.getProperty(ADD_TO_CART_LOG_FILE_PATH), true);
         } catch (IOException e) {
             LOG.error("The add to cart log file could not be opened.", e);
             throw new AddToCartFileHandlingException(e);
