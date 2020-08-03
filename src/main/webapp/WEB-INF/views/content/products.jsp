@@ -9,6 +9,8 @@
             <label>Denumire: <span class="product_title">${product.title}</span></label>
             <label>Pret: <span class="product_cost">${product.cost}</span> lei</label>
         </div>
-        <button class="add_to_cart">Adauga in cos</button>
+        <div class="add_to_cart_container">
+            <div class="add_to_cart">Adauga in cos</div>
+        </div>
     </div>
 </c:forEach>
