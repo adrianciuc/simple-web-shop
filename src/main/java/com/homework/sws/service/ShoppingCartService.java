@@ -6,5 +6,5 @@ import java.io.IOException;
 
 public interface ShoppingCartService {
 
-    void addToShoppingCart(String productIdParameter, String sessionId, ShoppingCartBean shoppingCartBean) throws IOException;
+    void addToShoppingCart(Long productIdParameter, String sessionId, ShoppingCartBean shoppingCartBean) throws IOException;
 }

@@ -8,7 +8,7 @@ let displayProductsFromCategory = function (ev) {
     let url = CONTEXT_PATH + GET_PRODUCTS_OF_CATEGORY_URL
     let rawCategoryId = $(ev.target).parent(".category").attr("id")
     let categoryId = rawCategoryId.replace(CATEGORY_ID_PREFIX, "")
-    $.get(url, {"categoryId": categoryId}, handleProductsResponse)
+    $.get(url, {"categoryId": categoryId}, handleProductsResponse).fail(displayError)
     $(".category-clicked").removeClass("category-clicked")
     $(ev.target).addClass("category-clicked");
 }

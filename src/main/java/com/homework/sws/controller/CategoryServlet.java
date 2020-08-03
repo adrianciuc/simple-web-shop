@@ -26,9 +26,10 @@ public class CategoryServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        LOG.debug("Received request: {}", req);
+        LOG.info(">>>>> Received request to get all categories");
         List<CategoryBean> categoryBeans = this.categoryService.getAllCategories();
         req.setAttribute("categories", categoryBeans);
         req.getRequestDispatcher("/WEB-INF/views/content/categories.jsp").include(req, resp);
+        LOG.info("<<<<< All categories returned");
     }
 }

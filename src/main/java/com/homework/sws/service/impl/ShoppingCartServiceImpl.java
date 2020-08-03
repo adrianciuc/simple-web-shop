@@ -24,26 +24,19 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     }
 
     @Override
-    public void addToShoppingCart(String productIdParameter, String sessionId, ShoppingCartBean shoppingCartBean) throws IOException {
-        if (productIdParameter == null || productIdParameter.trim().isEmpty()) {
-            LOG.debug("productId parameter was not sent in the request");
-            throw new ValidationException("productId parameter was not sent");
-        } else {
-            Long productId = Long.parseLong(productIdParameter);
-            if (productService.productWithIdExists(productId)) {
-                shoppingCartBean.getProductIds().add(productId);
-                synchronized (this) {
-                    this.addToCartFileWriter.append(
-                            String.format("Product with id %s was added to cart in session %s\n",
-                                    productId,
-                                    sessionId));
-                    this.addToCartFileWriter.flush();
-                }
-                LOG.debug("Product with id {} was added to cart", productId);
-            } else {
-                LOG.debug("There is no product with product id {}", productId);
-                throw new ValidationException(String.format(PRODUCT_WITH_ID_DOES_NOT_EXISTS, productId));
+    public void addToShoppingCart(Long productId, String sessionId, ShoppingCartBean shoppingCartBean) throws IOException {
+        if (productService.productWithIdExists(productId)) {
+            shoppingCartBean.getProductIds().add(productId);
+            synchronized (this) {
+                this.addToCartFileWriter.append(
+                        String.format("Product with id %s was added to cart in session %s\n",
+                                productId,
+                                sessionId));
+                this.addToCartFileWriter.flush();
             }
+        } else {
+            LOG.debug("There is no product with product id {}", productId);
+            throw new ValidationException(String.format(PRODUCT_WITH_ID_DOES_NOT_EXISTS, productId));
         }
     }
 

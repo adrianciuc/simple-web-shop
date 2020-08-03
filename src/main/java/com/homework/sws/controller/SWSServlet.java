@@ -11,11 +11,12 @@ import java.io.IOException;
 
 public class SWSServlet extends HttpServlet {
 
-    Logger LOG = LoggerFactory.getLogger(this.getClass());
+    private static final Logger LOG = LoggerFactory.getLogger(SWSServlet.class);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        LOG.debug("Received request {}", req);
+        LOG.info(">>>>> Received request to display home page");
         req.getRequestDispatcher("/WEB-INF/views/sws.jsp").forward(req, resp);
+        LOG.info("<<<<< Home page sent to be displayed");
     }
 }

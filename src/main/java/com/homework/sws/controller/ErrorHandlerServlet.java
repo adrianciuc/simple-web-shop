@@ -25,13 +25,14 @@ public class ErrorHandlerServlet extends HttpServlet {
 
     private void processError(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         Throwable throwable = (Throwable) req.getAttribute("javax.servlet.error.exception");
-        LOG.error("Error: ", throwable);
         if (throwable instanceof ValidationException) {
+            LOG.info("Validation error: {}", throwable.getMessage());
             resp.setStatus(400);
             resp.setContentType("application/json");
             resp.setCharacterEncoding("UTF-8");
             resp.getWriter().write(String.format("{\"error\": \"%s\"}", throwable.getMessage()));
         } else {
+            LOG.error("Error: ", throwable);
             req.getRequestDispatcher("/WEB-INF/views/errorPage.jsp").forward(req, resp);
         }
     }
