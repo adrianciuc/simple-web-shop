@@ -7,6 +7,7 @@
 
     <script>const CONTEXT_PATH = "<%=request.getContextPath()%>"</script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/jquery-3.5.1.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/error.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/productsService.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/sws.js"></script>
 </head>

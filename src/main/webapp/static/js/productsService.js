@@ -17,6 +17,9 @@ let handleProductsResponse = function (data, status) {
     if (status === "success") {
         displayProducts(data)
     }
+    if (status === "error") {
+        displayError(data)
+    }
 }
 
 let displayProducts = function(data) {
@@ -32,13 +35,11 @@ let addToCart = function (ev) {
     let rawProductId = $(ev.target).parent(".product_container").attr("id");
     let productId = rawProductId.replace(PRODUCT_ID_PREFIX, "")
     let url = CONTEXT_PATH + ADD_TO_CART_URL
-    $.post(url, {"productId": productId}, handleAddToCartResponse)
+    $.post(url, {"productId": productId}, handleAddToCartResponse).fail(displayError)
 }
 
 let handleAddToCartResponse = function (data, status) {
-    if (status === "success") {
-        let nrProductsInCartContainer = $("#nr_products_in_cart");
-        let currentCounter = nrProductsInCartContainer.html()
-        nrProductsInCartContainer.html(++currentCounter);
-    }
+    let nrProductsInCartContainer = $("#nr_products_in_cart");
+    let currentCounter = nrProductsInCartContainer.html()
+    nrProductsInCartContainer.html(++currentCounter);
 }

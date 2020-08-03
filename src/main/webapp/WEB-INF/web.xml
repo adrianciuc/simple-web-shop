@@ -17,8 +17,12 @@
         <servlet-class>com.homework.sws.controller.ProductServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>shopingCart</servlet-name>
+        <servlet-name>shoppingCart</servlet-name>
         <servlet-class>com.homework.sws.controller.ShoppingCartServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>errorHandler</servlet-name>
+        <servlet-class>com.homework.sws.controller.ErrorHandlerServlet</servlet-class>
     </servlet>
 
 
@@ -39,8 +43,12 @@
         <url-pattern>/category/products</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>shopingCart</servlet-name>
+        <servlet-name>shoppingCart</servlet-name>
         <url-pattern>/cart</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>errorHandler</servlet-name>
+        <url-pattern>/error-handler</url-pattern>
     </servlet-mapping>
 
     <filter>
@@ -52,4 +60,9 @@
         <filter-name>MDCFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
+    
+    <error-page>
+        <exception-type>java.lang.Throwable</exception-type>
+        <location>/error-handler</location>
+    </error-page>
 </web-app>
